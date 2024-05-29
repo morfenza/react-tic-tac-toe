@@ -6,7 +6,7 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard() {
+export default function GameBoard({ onSelectSquareFn, activePlayerSymbol }) {
   const [gameBoard, setGameBoard] = useState(initialGameBoard);
 
   function handleGameBoardCells(rowIndex, cellIndex) {
@@ -14,9 +14,11 @@ export default function GameBoard() {
       const deepGameBoardCopy = [
         ...previousGameBoard.map((nestedArray) => [...nestedArray]),
       ];
-      deepGameBoardCopy[rowIndex][cellIndex] = "X";
+      deepGameBoardCopy[rowIndex][cellIndex] = activePlayerSymbol;
       return deepGameBoardCopy;
     });
+
+    onSelectSquareFn();
   }
 
   return (
