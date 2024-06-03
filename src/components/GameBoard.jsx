@@ -6,19 +6,14 @@ const initialGameBoard = [
   [null, null, null],
 ];
 
-export default function GameBoard({ onSelectSquareFn, activePlayerSymbol }) {
-  const [gameBoard, setGameBoard] = useState(initialGameBoard);
+export default function GameBoard({ onSelectSquareFn, turns }) {
+  let gameBoard = initialGameBoard;
 
-  function handleGameBoardCells(rowIndex, cellIndex) {
-    setGameBoard((previousGameBoard) => {
-      const deepGameBoardCopy = [
-        ...previousGameBoard.map((nestedArray) => [...nestedArray]),
-      ];
-      deepGameBoardCopy[rowIndex][cellIndex] = activePlayerSymbol;
-      return deepGameBoardCopy;
-    });
+  for (const turn of turns) {
+    const { square, player } = turn;
+    const { row, cell } = square;
 
-    onSelectSquareFn();
+    gameBoard[row][cell] = player;
   }
 
   return (
@@ -30,7 +25,7 @@ export default function GameBoard({ onSelectSquareFn, activePlayerSymbol }) {
               <button
                 key={cellIndex}
                 className="cell"
-                onClick={() => handleGameBoardCells(rowIndex, cellIndex)}
+                onClick={() => onSelectSquareFn(rowIndex, cellIndex)}
               >
                 {cell}
               </button>
