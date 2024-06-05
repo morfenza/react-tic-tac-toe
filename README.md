@@ -1,2 +1,3 @@
 # React Tic Tac Toe
-* A test project
+
+- A test project

@@ -10,7 +10,7 @@ function derivedActivePlayer(gameTurns) {
     currentPlayer = "O";
   }
 
-  return currentPlayer
+  return currentPlayer;
 }
 
 function App() {
@@ -48,7 +48,7 @@ function App() {
         </ol>
         <GameBoard onSelectSquareFn={handleGameBoardCells} turns={gameTurns} />
       </div>
-      <Log turns={gameTurns}/>
+      <Log turns={gameTurns} />
     </main>
   );
 }
