@@ -24,6 +24,7 @@ export default function GameBoard({ onSelectSquareFn, turns }) {
                 key={cellIndex}
                 className="cell"
                 onClick={() => onSelectSquareFn(rowIndex, cellIndex)}
+                disabled={cell !== null}
               >
                 {cell}
               </button>
